@@ -57,28 +57,22 @@ do
     case "$1" in
         -)
             push_arguments "$1"
-            shift
             ;;
         --)
             options_end=1
-            shift
             ;;
         -h | --help)
             set_option_help
-            shift
             ;;
         -v | --version)
             set_option_version
-            shift
             ;;
         -f | --flag)
             set_option_flag
-            shift
             ;;
         -o | --output)
             shift
             set_option_output "$1"
-            shift
             ;;
         -*)
             if $(expr "$1" : '-.*[^hvfo].*' > /dev/null); then
@@ -98,13 +92,12 @@ do
                 shift
                 set_option_output "$1"
             fi
-            shift
             ;;
         *)
             push_arguments "$1"
-            shift
             ;;
     esac
+    shift
 done
 
 # main entry point
