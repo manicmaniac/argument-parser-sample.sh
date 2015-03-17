@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -u
+
 input=
 push_arguments() {
     if [ -z "$input" ]; then
@@ -75,20 +78,20 @@ do
             set_option_output "$1"
             ;;
         -*)
-            if $(expr "$1" : '-.*[^hvfo].*' > /dev/null); then
+            if expr "$1" : '-.*[^hvfo]' > /dev/null; then
                 echo "error: invalid option $1." >&2
                 exit 1
             fi
-            if $(expr "$1" : '-.*h.*' > /dev/null); then
+            if expr "$1" : '-.*h' > /dev/null; then
                 set_option_help
             fi
-            if $(expr "$1" : '-.*v.*' > /dev/null); then
+            if expr "$1" : '-.*v' > /dev/null; then
                 set_option_version
             fi
-            if $(expr "$1" : '-.*f.*' > /dev/null); then
+            if expr "$1" : '-.*f' > /dev/null; then
                 set_option_flag
             fi
-            if $(expr "$1" : '-.*o.*' > /dev/null); then
+            if expr "$1" : '-.*o' > /dev/null; then
                 shift
                 set_option_output "$1"
             fi
@@ -101,7 +104,7 @@ do
 done
 
 # main entry point
-if [ ! -z "$input" ]; then
+if [ -n "$input" ]; then
     echo "input=$input"
 fi
 
@@ -109,7 +112,7 @@ if [ $flag -eq 1 ]; then
     echo "flag=$flag"
 fi
 
-if [ ! -z "$output" ]; then
+if [ -n "$output" ]; then
     echo "output=$output"
 fi
 
