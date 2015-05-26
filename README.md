@@ -1,5 +1,7 @@
 # An example for complex argument parsing with POSIX sh
 
+[![Build Status](https://travis-ci.org/manicmaniac/argument-parser-sample.sh.svg?branch=master)](https://travis-ci.org/manicmaniac/argument-parser-sample.sh)
+
 ## Introduction
 
 Parsing arguments with POSIX `sh` is a heavy work.
